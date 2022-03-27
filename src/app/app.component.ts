@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Usuario } from './usuario.model';
+import { UsuariosService } from './components/services/usuariosService.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'toast-app';
+
+  usuarios : Usuario[] = [];
+  constructor(private usuariosService: UsuariosService){}
+  ngOnInit(): void {
+    // this.usuariosService.obtenerUsuarios().subscribe(
+    //   (usuarios : any) =>{
+    //     this.usuarios = usuarios;
+    //     this.usuariosService.setUsuarios(usuarios);
+    //   } 
+    // );
+  }
 }

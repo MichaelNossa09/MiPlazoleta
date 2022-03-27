@@ -1,0 +1,19 @@
+<div class="container" *ngIf="userLogged | async as user">
+    <div class="card text-center m-5" *ngIf="user.emailVerified == false; else Home" >
+        <div class="card-header">
+            
+        <h3>VERIFICACIÓN DE EMAIL</h3>
+            <div class="card-body">
+                
+                <p>USTED DEBE VERFICAR SU EMAIL <strong>{{user?.email}}!</strong></p>
+                <p>Por favor, revise su correo y verifique su email.</p>
+                <button (click)="onSendEmail()" class="btn btn-info">REENVIAR EMAIL DE VERIFICACIÓN</button>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #Home>
+    <div class="card text-center m-5">
+        <h3>USTED YA HA VERIFICADO SU CORREO ELECTRONICO.</h3>
+    </div>
+</ng-template>  

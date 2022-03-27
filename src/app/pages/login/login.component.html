@@ -1,0 +1,46 @@
+
+<div class="container">
+	<div class="row m-4">
+		<div class="col-md-6">	
+			<ngb-carousel>
+				<ng-template *ngFor="let imagen of images"  ngbSlide>
+				  <div class="picsum-img-wrapper">
+					<img class="img" src="../../../assets/{{imagen.img}}" alt="">
+				  </div>
+				  <div class="carousel-caption">
+					<h3>{{imagen.name}}</h3>
+					<p>{{imagen.des}}</p>
+				  </div>
+				</ng-template>
+			</ngb-carousel>	
+		</div>
+		<div class="col-md-6">
+			<div class="card text-center ">
+				<div class="card-header ">
+					<b>INICIAR SESIÓN</b>
+				</div>
+				<div class="row mx-2">
+					<form #f="ngForm" (ngSubmit)="f.form.valid && login2(f)">
+						<div class="col-md-12">
+							<label for="email" class="my-2 d-flex">Correo Electrónico</label>
+							<input class="form-control" type="text" name="email" placeholder="Email" ngModel required>
+						</div>
+						<div class="col-md-12">
+							<label for="password" class="my-2 d-flex">Contraseña</label>
+							<input class="form-control" type="password" name="password" placeholder="Password" ngModel required>
+						</div>
+						<div class="col-md-12 d-grid mt-3" >
+							<button type="submit" class="btn btn-outline-secondary mb-3">Ingresar</button>
+						</div>
+					</form>
+                    <div class="col-md-12 d-grid" >
+                        <button type="submit" class="btn btn-outline-danger" (click)="loginWithGoogle()">Ingresar con Google
+                            <img src="../../../assets/icons-google.png" width="20" height="20" alt="">
+                        </button>
+                    </div>
+                    <p class="mt-2">Aún no tienes una cuenta? <a routerLink="/register">Regístrate!</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

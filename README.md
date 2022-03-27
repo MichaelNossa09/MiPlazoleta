@@ -1,4 +1,13 @@
-# ToastApp
+# Instalaciones Requeridas
+
+1. npm install
+2. npm install ngx-toastr --save
+3. npm install @angular/animations --save
+4. npm install bootstrap
+5. ng add @ng-bootstrap/ng-bootstrap 
+6. ng add @angular/fire
+
+# MiPlazoleta
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
 

@@ -1,0 +1,16 @@
+img{
+    width: 100%;
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: #ecb47d;
+}
+b, label{
+    color: #ecb47d;
+}
+
+.form-check-label{
+    color: black;
+}
