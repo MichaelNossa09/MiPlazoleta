@@ -15,7 +15,7 @@
 			</ngb-carousel>
 		</div>
 		<div class="col-md-6">
-      <form  (ngSubmit)="f.form.valid && registrarse()" #f="ngForm"  class="needs-validation">
+      <form  (ngSubmit)="f.form.valid && guardarUsuarioCreado()" #f="ngForm"  class="needs-validation">
 			<div class="card text-center ">
 			  <div class="card-header mb-2"> 
 					<b>REGISTRO</b>
@@ -23,31 +23,30 @@
         <div class="row mx-2">
           <div class="col-md-12">
             <label for="Name" class="d-flex my-2 form-label">Nombre</label>
-            <input class="form-control" type="text"  name="name" placeholder="Ingrese su nombre" [(ngModel)]="name" required>
+            <input class="form-control" type="text"  name="nombre" placeholder="Ingrese su nombre" [(ngModel)]="usuario.nombre" required>
           </div>
         </div> 
         <div class="row mx-2">
           <div class="col-md-12">
             <label for="Email" class="d-flex my-2 form-label" >Email</label>
-            <input class="form-control" type="email" name="email" placeholder="Ingrese su email" [(ngModel)]="email" required>
+            <input class="form-control" type="email" name="email" placeholder="Ingrese su email" [(ngModel)]="usuario.email" required>
           </div>
         </div> 
         <div class="row mx-2">
           <div class="col-md-12">
             <label for="password" class="d-flex my-2 form-label">Password</label>
-            <input class="form-control" type="password" name="password" placeholder="Ingrese su contraseña (Min 6 Digitos.)" [(ngModel)]="password" required>
+            <input class="form-control" type="password" name="password" placeholder="Ingrese su contraseña (Min 6 Digitos.)" [(ngModel)]="usuario.password" required>
           </div>
         </div>
         <div class="row mx-2 mb-2">
           <div class="col-md-12">
             <label for="Phone" class="d-flex my-2 form-label">Telefono</label>
-            <input class="form-control" type="number" name="phone" placeholder="Ingrese su telefono" [(ngModel)]="phone" required>
+            <input class="form-control" type="number" name="phone" placeholder="Ingrese su telefono" [(ngModel)]="usuario.phone" required>
           </div>
         </div>
         <div class="row mx-2 mb-2">
           <div class="d-grid mt-3">
             <button class="btn btn-outline-secondary" type="submit">REGISTRARME</button>
-            <button class="btn btn-outline-danger mt-2" routerLink="/register-restaurant">DESEO REGISTRARME COMO RESTAURANTE</button>
           </div>
           <p for="register" class="mt-2">Ya tienes cuenta? <a routerLink="/login">Logeate!</a></p>
         </div>

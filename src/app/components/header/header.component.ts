@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthServices } from '../services/auth.service';
-
+import { Component,  OnInit } from '@angular/core';
+import { AuthServices } from '../../services/auth.service';
+import {faBars} from '@fortawesome/free-solid-svg-icons'
+import { CargarjsService } from '../../services/cargarjs.service'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,10 +9,13 @@ import { AuthServices } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  faBars = faBars;
+  constructor(private authService: AuthServices, private cargarjs: CargarjsService) {
+    cargarjs.carga(['header'])
+   }
 
-  constructor(private authService: AuthServices) { }
+  public ngOnInit(): void {
 
-  ngOnInit(): void {
   }
   isAutenticado(){
     return this.authService.isAutenticado();

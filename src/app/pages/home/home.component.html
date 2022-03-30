@@ -1,17 +1,19 @@
 
-<div class="container" >
-    <div class="row m-4">
-        <div class="col-md-6 mb-2" *ngFor="let detallePlazoleta of listadoPlazoletas" >
-            <div class="card text-center" >
-                <b>{{detallePlazoleta.nombre}} </b>
+    <div class="row">
+        <div class="col-md-4 mt-5 mb-5" *ngFor="let plazolet of plazoletas; let i = index"
+        [class.active]="i == plazoletaIndex">
+            <div class="card text-center">
+                <div class="card-header ">
+                    <b class="m-2">{{plazolet.nombre}}</b>
+                </div>
+                <div class="card-body m-2">
+                        <img (click) = "configuracionPlazoleta(plazolet, (i+1))"
+                         src="../../../assets/plazoleta3.jpg" alt="" style="width: 100%; cursor: pointer;">
+                        <p class="text-center m-2">{{plazolet.descripcion}}</p>
+                </div>
+                <div class="card-footer">
+                    <b class="m-2">{{plazolet.ubicacion}}</b>
+                </div>
             </div>
-            <div class="card-header text-center" style="cursor:pointer">
-                <img src="{{detallePlazoleta.img}}" alt="">
-                {{detallePlazoleta.descripcion}}
-            </div> 
-            <div class="card-footer text-center">
-                {{detallePlazoleta.ubicacion}}
-            </div> 
         </div>
     </div>
-</div>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastService } from 'src/app/components/services/toastService.service';
-import { Usuario } from 'src/app/../app/usuario.model';
-import { AuthServices } from '../../components/services/auth.service';
-import { UsuariosService } from '../../components/services/usuariosService.service';
+import { ToastService } from 'src/app/services/toastService.service';
+import { Usuario } from 'src/app/models/usuario.model';
+import { AuthServices } from '../../services/auth.service';
+import { UsuariosService } from '../../services/usuariosService.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -23,12 +23,13 @@ export class RegisterComponent implements OnInit{
     img: 'plazoleta3.jpg',
     des: 'La mejor'}
   ];
-  usuarios: Usuario[];
-  name: string = '';
-  email: string = '';
-  password: string = '';
-  phone: string = '';
-  role: string = 'user'
+  usuario={
+    nombre: '',
+    email: '',
+    password: '',
+    phone: '',
+    role: 'user'
+  };
   constructor(
     private toastService: ToastService,
     private router: Router,
@@ -44,36 +45,35 @@ export class RegisterComponent implements OnInit{
     _config.wrap = true;
   }
   ngOnInit(): void {
-    this.usuariosService.obtenerUsuarios();  
   }
-
-  registrarse() {
-    this.authServices
-      .register(this.email, this.password)
+  guardarUsuarioCreado(): void{
+    const {email, password} = this.usuario;
+    this.authServices.register(email, password)
       .then((res) => {
-        let usuario1 = new Usuario(
-          this.name,
-          this.email,
-          this.password,
-          this.phone,
-          this.role
-        );
-        this.usuariosService.agregarUsuario(usuario1);
-        this.router.navigate(['verification-email']);
-        this.authServices.sendEmailForVerification();
-        this.toastService.toastService.success({
-          detail: "Succes Message",
-          summary: "Se ha registrado con exito.",
-          duration: 3000
-      });
-      })
-      .catch((error) => {
-        this.router.navigate(['login'])
-        this.toastService.toastService.error({
-          detail: "Error Message",
-          summary: "Correo existente o contraseña muy corta.",
-          duration: 3000
-      })
+        let usuario1 = new Usuario();
+        usuario1 = {
+          nombre: this.usuario.nombre,
+          email: this.usuario.email,
+          password: this.usuario.password,
+          phone: this.usuario.phone,
+          role: this.usuario.role
+        } 
+        this.usuariosService.create(usuario1).then( () =>{
+          this.router.navigate(['verification-email']);
+          this.authServices.sendEmailForVerification();
+          this.toastService.toastService.success({
+            detail: "Succes Message",
+            summary: "Se ha registrado con exito.",
+            duration: 3000
+          });
+        });
+      }).catch((error) => {
+          this.router.navigate(['login'])
+          this.toastService.toastService.error({
+            detail: "Error Message",
+            summary: "Correo existente o contraseña muy corta.",
+            duration: 3000
+          })
       });
   }
 }

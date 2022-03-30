@@ -3,22 +3,20 @@ import { Router } from '@angular/router';
 import { ServicePlazoletaService } from '../../services/service-plazoleta.service';
 import { Plazoleta } from '../../models/plazoleta.model'
 import { map } from 'rxjs/operators';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-details-plazoletas',
+  templateUrl: './details-plazoletas.component.html',
+  styleUrls: ['./details-plazoletas.component.css']
 })
-export class HomeComponent implements OnInit {
-
+export class DetailsPlazoletasComponent implements OnInit {
 
   plazoletas?: Plazoleta[];
   plazoleta?: Plazoleta;
   plazoletaIndex = -1;
+  titulo : string;
 
   constructor(private plazoletaService : ServicePlazoletaService,
     private router: Router) { }
-  
   ngOnInit(): void {
     this.recibirDatosBD();
   }
@@ -46,6 +44,7 @@ export class HomeComponent implements OnInit {
    this.plazoleta = plazoletas;
    this.plazoletaIndex = index;
    console.log(this.plazoleta, this.plazoletaIndex);
-   this.router.navigate(['/plazoletas/', index])
+   this.router.navigate(['/plazoleta/:id', index])
   }
+
 }

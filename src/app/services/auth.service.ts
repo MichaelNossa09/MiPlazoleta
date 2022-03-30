@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import firebase from 'firebase/compat/app';
 import { Observable } from "rxjs";
 import { ToastService } from "./toastService.service";
-import { AngularFireModule } from "@angular/fire/compat";
+
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class AuthServices{
                     token => {
                         this.token = token
                         if(res.user?.emailVerified == true){
-                            this.router.navigate(['/home'])
+                            this.router.navigate(['/plazoletas'])
                         }else{
                             this.router.navigate(['/verification-email']); 
                         }
@@ -54,7 +54,7 @@ export class AuthServices{
                 firebase.auth().currentUser?.getIdToken().then(
                     token => {
                         this.token = token
-                        this.router.navigate(['/home']);
+                        this.router.navigate(['/plazoletas']);
                         this.toastService.toastService.success({
                             detail: "Succes Message",
                             summary: "Se ha logeado con exito.",
@@ -82,6 +82,7 @@ export class AuthServices{
     }
     logout(){
         firebase.auth().signOut().then(() =>{
+            this.router.navigate(['login'])
             this.toastService.toastService.success({
                 detail: "Logout Message",
                 summary: "Se ha cerrado sesión correctamente.",

@@ -1,28 +1,56 @@
-<link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
-<nav class="navbar bg-dark bg-gradient" *ngIf="userLogged | async as user; else loggedOff">
-    <a class="navbar-brand mx-2 p-2 logo" href="home">
-      MiPlazoleta
-    </a>
-    <div class="dropdown mx-2  user">
-        <button type="button" class="btn btn-outline-secondary" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
-          aria-controls="collapseExample">
-          <img  *ngIf="user.photoURL && user.displayName; else email" src='{{user.photoURL}}' alt="" width="30" height="30">
-          {{user.displayName}}
-          <ng-template #email>
-            {{user.email}}
-          </ng-template>
-        </button>
-        <div class="dropdown-menu dropdown-menu-lg-right" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-          <a class="logout dropdown-item" href="#" (click)="salir()">
-            Cerrar sesión
-          </a>
-        </div>
+<!-- 
+<nav class="menu" *ngIf="userLogged | async as user; else loggedOff">
+  <label class="logo">MIPLAZOLETA</label>
+  <ul class="menu_items" id="menu">
+    <li><a href="#">Quiénes Somos</a></li>
+    <li><a href="#">Contáctenos</a></li>
+    <li class="active"><a href="#" (click)="salir()">Cerrar Sesión</a></li>
+  </ul>
+  <span class="btn_menu" onclick="showmenu()">
+    <fa-icon [icon]="faBars"></fa-icon>
+  </span>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="userLogged | async as user; else loggedOff">
+  <div class="container-fluid">
+    <a class="navbar-brand mx-2 logo" href="plazoletas">MIPLAZOLETA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="About">Quiénes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="Contact">Contáctenos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer;" (click)="salir()">Cerrar Sesión</a>
+        </li>
+      </ul>
     </div>
-</nav>  
+  </div>
+</nav>
+
+  
 <ng-template #loggedOff>
-    <nav class="navbar bg-dark bg-gradient">
-      <a class="navbar-brand mx-2 p-2 logo" href="home">
-        MiPlazoleta
-      </a>
-    </nav> 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-2 logo" href="plazoletas">MIPLAZOLETA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarNav">
+        <ul class="navbar-nav ms-auto mx-5">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="About">Quiénes Somos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="Contact">Contáctenos</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </ng-template>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthServices } from '../services/auth.service';
+import { AuthServices } from '../../services/auth.service';
 import { map } from 'rxjs/operators'
 
 @Injectable({
@@ -15,7 +15,7 @@ export class LoggedGuard implements CanActivate {
       return this.authServe.userData$.pipe(
         map( user =>{
           if(user){
-            this.router.navigate(['/home'])
+            this.router.navigate(['/plazoletas'])
             return false;
           }
           return true;

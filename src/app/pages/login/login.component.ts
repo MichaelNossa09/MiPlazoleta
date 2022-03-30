@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { AuthServices } from 'src/app/components/services/auth.service';
+import { AuthServices } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
        _config.pauseOnHover = true;
        _config.showNavigationArrows = false;
        _config.showNavigationIndicators = true;
-       _config.animation = false;
+       _config.animation = true;
        _config.wrap = true;
      }
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  login2(form: NgForm){
+  login(form: NgForm){
     const email  = form.value.email;
     const password = form.value.password;
     this.authService.login(email,password)

@@ -20,7 +20,7 @@
 					<b>INICIAR SESIÓN</b>
 				</div>
 				<div class="row mx-2">
-					<form #f="ngForm" (ngSubmit)="f.form.valid && login2(f)">
+					<form #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
 						<div class="col-md-12">
 							<label for="email" class="my-2 d-flex">Correo Electrónico</label>
 							<input class="form-control" type="text" name="email" placeholder="Email" ngModel required>

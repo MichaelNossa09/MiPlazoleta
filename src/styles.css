@@ -1,4 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&family=Montserrat:wght@500&display=swap');
+
 *{
-    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Montserrat", sans-serif;
 }

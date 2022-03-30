@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { AuthServices } from 'src/app/components/services/auth.service';
+import { AuthServices } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-send',
