@@ -2,6 +2,8 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { Injectable} from "@angular/core";
 
 import { AngularFireDatabase , AngularFireList } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -15,7 +17,7 @@ export class UsuariosService{
         this.misUsuariosRef = db.list(this.dbUsuarios);
     }
 
-    getAll(): AngularFireList<Usuario>{
+      getAll(): AngularFireList<Usuario>{
         return this.misUsuariosRef;
       }
       create(usuario: Usuario): any{

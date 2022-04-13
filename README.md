@@ -6,7 +6,7 @@
 4. npm install bootstrap
 5. ng add @ng-bootstrap/ng-bootstrap 
 6. ng add @angular/fire (incluyendo Database)
-7. ng add @fortawesome/angular-fontawesome@5
+7. ng add @fortawesome/angular-fontawesome
 
 # MiPlazoleta
 

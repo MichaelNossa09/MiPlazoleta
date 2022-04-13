@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { AuthServices } from '../../services/auth.service';
 import { UsuariosService } from '../../services/usuariosService.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-register',
@@ -23,19 +24,21 @@ export class RegisterComponent implements OnInit{
     img: 'plazoleta3.jpg',
     des: 'La mejor'}
   ];
-  usuario={
+  datos: Usuario = {
+    uid: '',
     nombre: '',
     email: '',
     password: '',
     phone: '',
-    role: 'user'
-  };
+    role: 'visitante'
+  }
   constructor(
     private toastService: ToastService,
     private router: Router,
     private authServices: AuthServices,
     private usuariosService: UsuariosService,
-    private _config: NgbCarouselConfig
+    private _config: NgbCarouselConfig,
+    private firestore: FirestoreService
   ) {
     _config.interval = 4000;
     _config.pauseOnHover = true;
@@ -46,34 +49,57 @@ export class RegisterComponent implements OnInit{
   }
   ngOnInit(): void {
   }
-  guardarUsuarioCreado(): void{
-    const {email, password} = this.usuario;
-    this.authServices.register(email, password)
-      .then((res) => {
-        let usuario1 = new Usuario();
-        usuario1 = {
-          nombre: this.usuario.nombre,
-          email: this.usuario.email,
-          password: this.usuario.password,
-          phone: this.usuario.phone,
-          role: this.usuario.role
-        } 
-        this.usuariosService.create(usuario1).then( () =>{
-          this.router.navigate(['verification-email']);
-          this.authServices.sendEmailForVerification();
-          this.toastService.toastService.success({
-            detail: "Succes Message",
-            summary: "Se ha registrado con exito.",
-            duration: 3000
-          });
-        });
-      }).catch((error) => {
-          this.router.navigate(['login'])
-          this.toastService.toastService.error({
-            detail: "Error Message",
-            summary: "Correo existente o contraseña muy corta.",
-            duration: 3000
-          })
+  async guardarUsuarioCreado(){
+    const res = await this.authServices.register(this.datos).catch( error =>{
+      this.toastService.toastService.error({
+          detail: "Error Message",
+          summary: "Correo existente o contraseña muy corta.",
+          duration: 3000
+      })
+    })
+    if(res){
+      const path = 'Usuarios';
+      const id = res.user?.uid;
+      this.datos.uid = id;
+      this.datos.password = '';
+      this.router.navigate(['verification-email']);
+      await this.firestore.createDoc(this.datos, path, id)
+      this.toastService.toastService.success({
+        detail: "Succes Message",
+        summary: "Se ha registrado con exito.",
+        duration: 3000
       });
+      this.authServices.sendEmailForVerification();
+    }
   }
+  // guardarUsuarioCreado(): void{
+  //   const {email, password} = this.usuario;
+  //   this.authServices.register(email, password)
+  //     .then((res) => {
+  //       let usuario1 = new Usuario();
+  //       usuario1 = {
+  //         nombre: this.usuario.nombre,
+  //         email: this.usuario.email,
+  //         password: this.usuario.password,
+  //         phone: this.usuario.phone,
+  //         role: this.usuario.role
+  //       } 
+  //       this.usuariosService.create(usuario1).then( () =>{
+  //         this.router.navigate(['verification-email']);
+  //         this.authServices.sendEmailForVerification();
+  //         this.toastService.toastService.success({
+  //           detail: "Succes Message",
+  //           summary: "Se ha registrado con exito.",
+  //           duration: 3000
+  //         });
+  //       });
+  //     }).catch((error) => {
+  //         this.router.navigate(['login'])
+  //         this.toastService.toastService.error({
+  //           detail: "Error Message",
+  //           summary: "Correo existente o contraseña muy corta.",
+  //           duration: 3000
+  //         })
+  //     });
+  // }
 }

@@ -1,0 +1,65 @@
+<div class="container" *ngIf="productos != null; else Off">
+  <div class="table-responsive">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="col-12" *ngFor="let item of productos; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td > <div class="image">
+                <img src="{{item.platillo.imagen}}" alt="">
+            </div> </td>
+            <td>{{item.platillo.nombre}}</td>
+            <td>{{item.total| currency: 'COP '}}</td>
+            <td>{{item.cantidad}}</td>
+            <td>
+              <button class="btn btn-outline-info m-2" (click)="aumentarCantidad(item.platillo)"><fa-icon [icon]="faPlus"></fa-icon></button>
+              <button class="btn btn-outline-danger m-2" (click)="decrementarCantidad(item.platillo)"><fa-icon [icon]="faMinus"></fa-icon></button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <th scope="col">TOTAL A PAGAR</th>
+            <th scope="col">{{pedido.precioTotal | currency: 'COP '}}</th>
+          </tr>
+        </tfoot>
+      </table>
+  </div>
+  <div class="row">
+    <div class="col-md-12 d-grid m-2">
+      <button class="btn btnAdd">Realizar Pedido</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #Off>
+  <div class="container cdor">
+    <div class="row m-5">
+      <div class="col-md-12">
+        <h5 class="text-center">
+          NO HAY PRODUCTOS AGREGADOS EN EL CARRITO!
+        </h5>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- <div class="container">
+  <div class="row">
+    <div *ngFor="let producto of productos">
+      <app-item-carrito [productoPedido]="producto"></app-item-carrito>
+    </div>
+  </div>
+</div> -->

@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/toast-app",
+            "outputPath": "dist/miplazoleta",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -33,7 +33,9 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -83,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "toast-app:build"
+            "browserTarget": "miplazoleta:build"
           }
         },
         "test": {
@@ -102,9 +104,19 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "miplazoleta:build:production",
+            "firebaseProject": "miplazoleta-69f98",
+            "firebaseHostingSite": "miplazoleta-69f98"
+          }
         }
       }
     }
   },
-  "defaultProject": "toast-app"
+  "defaultProject": "miplazoleta"
 }

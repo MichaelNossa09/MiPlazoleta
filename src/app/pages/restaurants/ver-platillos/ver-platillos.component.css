@@ -1,0 +1,87 @@
+.container{
+    height: 100%;
+    position: relative;
+}
+img{
+    width: 85%;
+    border-radius: 15%;
+    height: 10rem;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    object-fit: cover;
+}
+.card{
+    padding: 1.5em .5em .5em;
+    border-radius: 2em;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    height: 100%;
+}
+.card-title{
+    font-weight: 700;
+    font-size: 1.5em;
+}
+.card-text{
+    display: flex;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.btnEdit{
+    border-radius:2em;
+    color: #000000;
+    background: rgb(65, 203, 118, 0.6);
+    padding: .5em 1.5em;
+}
+.btnEdit:hover {
+    background: rgb(65, 203, 118, 1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+}
+.btnElim{
+    border-radius:2em;
+    color: #000000;
+    background: rgba(240, 14, 14, 0.7);
+    padding: .5em 1.5em;
+}
+.btnElim:hover {
+    background: rgba(240, 14, 14, 1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+}
+.btnAdd{
+    border-radius:2em;
+    color: #000000;
+    background: rgba(240, 189, 78, 0.8);
+    padding: .5em 1.5em;
+    /* margin-top: 20rem; */
+}
+.btnAdd:hover{
+    background: rgba(240, 189, 78, 1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+}
+.btnAddV{
+    border-radius:2em;
+    color: #000000;
+    background: rgba(240, 189, 78, 0.8);
+    padding: .5em 1.5em;
+}
+.btnAddV:hover{
+    background: rgba(240, 189, 78, 1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+}
+.NP{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    color: rgba(240, 189, 78, 1);
+}

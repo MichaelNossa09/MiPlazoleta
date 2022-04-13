@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "miplazoleta-69f98": {
+      "hosting": {
+        "miplazoleta": [
+          "miplazoleta-69f98"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "miplazoleta-69f98"
+  }
+}

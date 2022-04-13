@@ -1,29 +1,60 @@
 import { Component,  OnInit } from '@angular/core';
 import { AuthServices } from '../../services/auth.service';
-import {faBars} from '@fortawesome/free-solid-svg-icons'
-import { CargarjsService } from '../../services/cargarjs.service'
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { Usuario } from 'src/app/models/usuario.model';
+import { Restaurant } from 'src/app/models/restaurant.model';
+import { Plazoleta } from 'src/app/models/plazoleta.model';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  plazoletas : Plazoleta[];
+  dataRestaurant: any;
 
-  faBars = faBars;
-  constructor(private authService: AuthServices, private cargarjs: CargarjsService) {
-    cargarjs.carga(['header'])
+  login : boolean = false;
+  rol: "visitante" | "admin" | "restaurante" | undefined;
+  constructor(private authService: AuthServices,
+  private firestore: FirestoreService) {
+      this.authService.getUserLogged().subscribe( res =>{
+        if(res){
+          this.login = true;
+          this.getRol(res.uid);
+          this.getDatosUser(res.uid)
+          // this.getRestaurantUser(res.uid)
+        }else{
+          this.login = false;
+        }
+      })
    }
 
-  public ngOnInit(): void {
-
-  }
-  isAutenticado(){
-    return this.authService.isAutenticado();
-  }
+  public ngOnInit(): void {}
   salir(){
     this.authService.logout();
   }
-  userLogged = this.authService.getUserLogged();
-  isCollapsed=true;
+  getDatosUser(uid: any){
+    const path = "Usuarios";
+    const id = uid;
+    this.firestore.getDoc<Usuario>(path, id).subscribe(res=>{
+      if(res){
+       this.rol = res.role
+      }
+    });
+  }
+  getRol(uid: any){
+    const path = "Plazoletas"
+    this.firestore.getCollection<Plazoleta>(path).subscribe( res =>{
+      res.map(user => {
+        const ruta = "Plazoletas/"+user.id+"/Restaurantes"
+        this.firestore.getDoc<Restaurant>(ruta, uid).subscribe(data => {
+          if(user.id == data?.idPlazoleta){
+            this.rol = data?.role;       
+          }
+        })
+      })
+    })
+  }
+
 }
 

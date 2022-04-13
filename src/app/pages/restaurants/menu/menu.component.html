@@ -1,0 +1,85 @@
+
+<!-- Principal -->
+<div class="container" *ngIf="menuClick == false && editClick == false">
+    <div class="row m-2">
+        <div class="col-md-4 mb-2" *ngFor="let item of menu">
+            <div class="card m-1">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.nombre}}</h5>
+                  <p class="card-text text-center">{{item.descripcion}}</p>
+                  <div class="d-grid">
+                    <button class="btn btnAdd m-1" (click)="verEditar(item.id)">Ver Platillos <fa-icon class="mr-5" [icon]="faEye"></fa-icon></button>
+                    <button class="btn btnEdit  m-1" (click)="mostrarEdit(item)">Editar Menú <fa-icon class="mr-5" [icon]="faEdit"></fa-icon></button>
+                    <button class="btn btnElim  m-1" (click)="eliminar(item.id)">Eliminar Menú <fa-icon class="mr-5"[icon]="faTrash"></fa-icon></button>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="d-grid mt-3 mb-2">
+                <button class="btn btnAdd" (click)="mostrarAdd()">Agregar Nuevo Menú</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Agregar Menú -->
+<div class="container" *ngIf="menuClick">
+    <div class="row m-5">
+        <div class="col-md-12">
+            <form  (ngSubmit)="f.form.valid && agregarMenu()" #f="ngForm">
+                <div>
+                    <div class="form-group text-center">
+                        <label for="nombre">Nombre: </label>
+                        <input type="text" name="nombre" class="form-control col-md-3" [(ngModel)] = "datos.nombre" required>
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="descripcion">Descripcion: </label>
+                        <input type="text" name="descripcion" class="form-control" [(ngModel)] = "datos.descripcion" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btnEdit mt-2">Agregar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="d-grid">
+                <button class="btn btnAdd mt-2 mb-2" (click)="cerrarMenu()">Volver</button>
+            </div>
+        </div>          
+    </div>
+</div>
+
+
+<!-- Editar Menú -->
+<div class="container" *ngIf="editClick">
+    <div class="row m-5" >
+        <div class="col-md-12">
+            <form  (ngSubmit)="f.form.valid && editarMenu()" #f="ngForm">
+                <div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre: </label>
+                        <input type="text" name="nombre" class="form-control col-md-3" placeholder="{{datos.nombre}}" [(ngModel)] = "datos.nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion: </label>
+                        <input type="text" name="descripcion" class="form-control" placeholder="{{datos.descripcion}}" [(ngModel)] = "datos.descripcion" required>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btnEdit mt-2" type="submit">Editar Menu</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="d-grid">
+                <button class="btn btnAdd mt-2 mb-2" (click)="cerrarEdit()">Volver</button>
+            </div>
+        </div>          
+    </div>
+</div>

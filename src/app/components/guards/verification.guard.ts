@@ -16,7 +16,7 @@ export class VerificationGuard implements CanActivate {
         map( user =>{
           if(user){
             if(user.emailVerified == true){
-              this.router.navigate(['/plazoletas'])
+              this.router.navigate(['/home'])
               return false;
             }
           }

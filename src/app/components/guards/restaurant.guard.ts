@@ -16,7 +16,7 @@ export class LoggedGuard implements CanActivate {
       return this.authServe.userData$.pipe(
         map( user =>{
           if(user){
-            this.router.navigate(['/plazoletas'])
+            this.router.navigate(['/home'])
             return false;
           }
           return true;

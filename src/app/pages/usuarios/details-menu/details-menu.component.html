@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row m-2">
+        <div class="col-md-4 mb-2" *ngFor="let item of menu">
+            <div class="card m-1">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.nombre}}</h5>
+                  <p class="card-text text-center">{{item.descripcion}}</p>
+                  <div class="d-grid">
+                    <button class="btn btnAdd m-1" (click)="verPlatillos(item.id)">Ver Platillos <fa-icon class="mr-5" [icon]="faEye"></fa-icon></button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

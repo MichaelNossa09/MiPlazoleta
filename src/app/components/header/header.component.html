@@ -1,56 +1,93 @@
-<!-- 
-<nav class="menu" *ngIf="userLogged | async as user; else loggedOff">
-  <label class="logo">MIPLAZOLETA</label>
-  <ul class="menu_items" id="menu">
-    <li><a href="#">Quiénes Somos</a></li>
-    <li><a href="#">Contáctenos</a></li>
-    <li class="active"><a href="#" (click)="salir()">Cerrar Sesión</a></li>
-  </ul>
-  <span class="btn_menu" onclick="showmenu()">
-    <fa-icon [icon]="faBars"></fa-icon>
-  </span>
-</nav> -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="userLogged | async as user; else loggedOff">
+ <!-- ROL ADMIN -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login && rol == 'admin'">
   <div class="container-fluid">
-    <a class="navbar-brand mx-2 logo" href="plazoletas">MIPLAZOLETA</a>
+    <a class="navbar-brand mx-2 logo" href="home">MIPLAZOLETA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse text-center" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="About">Quiénes Somos</a>
+          <a class="nav-link items" routerLink="About">Quiénes Somos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="Contact">Contáctenos</a>
+          <a class="nav-link items" routerLink="Contact">Contáctenos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="cursor: pointer;" (click)="salir()">Cerrar Sesión</a>
+          <a class="nav-link items" routerLink="admin">Agregar Plazoleta</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link cs" style="cursor: pointer;" (click)="salir()">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- ROL VISITANTE -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login && rol != 'admin' && rol != 'restaurante'">
+  <div class="container-fluid ">
+    <a class="navbar-brand mx-2 logo" href="home">MIPLAZOLETA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link items" routerLink="about">Quiénes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link items" routerLink="contact">Contáctenos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link items" routerLink="carrito">Ver Carrito</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link cs" style="cursor: pointer;" (click)="salir()">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- ROL RESTAURANT -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login && rol == 'restaurante'">
+  <div class="container-fluid">
+    <a class="navbar-brand mx-2 logo" href="home">MIPLAZOLETA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link items" routerLink="About">Quiénes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link items" routerLink="Contact">Contáctenos</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link cs" style="cursor: pointer;" (click)="salir()">Cerrar Sesión</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-  
-<ng-template #loggedOff>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand mx-2 logo" href="plazoletas">MIPLAZOLETA</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse text-center" id="navbarNav">
-        <ul class="navbar-nav ms-auto mx-5">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="About">Quiénes Somos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="Contact">Contáctenos</a>
-          </li>
-        </ul>
-      </div>
+<!-- NO LOGEADO -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login == false">
+  <div class="container-fluid">
+    <a class="navbar-brand mx-2 logo" href="login">MIPLAZOLETA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link items" routerLink="About">Quiénes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link items" routerLink="Contact">Contáctenos</a>
+        </li>
+      </ul>
     </div>
-  </nav>
-</ng-template>
+  </div>
+</nav>

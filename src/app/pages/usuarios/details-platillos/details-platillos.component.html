@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row m-4">
+        <div class="col-md-4" *ngFor="let item of platillos">
+            <div class="card m-1">
+                <img src="{{item.imagen}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.nombre}}</h5>
+                  <p class="card-text text-center">{{item.descripcion}}</p>
+                  <p class="text-center">{{item.precio | currency: 'COP '}}</p>
+                  <div class="d-grid">
+                    <button class="btn btnAdd m-1" (click)="addCarrito(item)">Agregar Al Carrito </button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

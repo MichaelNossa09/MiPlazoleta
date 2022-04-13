@@ -1,11 +1,11 @@
 
 
-export class Usuario{
+export interface Usuario{ 
 
-    id?:string;
-    nombre?: string;
-    email?: string;
-    password?: string;
-    phone?: string;
-    role?: string;
+    uid:any;
+    nombre: string;
+    email: string;
+    password: string;
+    phone: string;
+    role: "visitante" | "admin" | "restaurante";
 }

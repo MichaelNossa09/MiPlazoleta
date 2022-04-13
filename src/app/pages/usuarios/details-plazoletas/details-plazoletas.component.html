@@ -1,0 +1,19 @@
+
+<section>
+    <div class="container">
+        <div class="row m-4">
+            <div class="col-md-4" *ngFor="let item of restaurants">
+                <div class="card m-2">
+                    <div class="image">
+                        <img src="{{item.image}}" class=" card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{item.nombre}}</h5>
+                      <p class="card-text"> Tiempo Estimado: <b>40 - 60</b> mins</p>
+                      <a (click)="enviarId(item.id)" class="btn button">Ver Menus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
