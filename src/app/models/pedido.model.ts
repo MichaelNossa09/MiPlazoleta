@@ -19,4 +19,4 @@ export interface ProductoPedido{
     total: number;
 }
 
-export type EstadoPedido = 'enviado' | 'visto' | 'camino' | 'entregado';
+export type EstadoPedido = 'Enviado' | 'Pagado' |'Aceptado' | 'En Proceso' | 'Terminado' | 'Entregado';

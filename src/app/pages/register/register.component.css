@@ -1,16 +1,35 @@
-img{
+.image{
+    width: 100%;
+    height: 30rem;
+}
+.image img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
-
 a{
     text-decoration: none;
-    color: #ecb47d;
+    color: #CD5D67;
 }
 b, label{
-    color: #ecb47d;
+    color: #CD5D67;
 }
-
+.btnRegistrar{
+    border-color: #91171F;
+    color: #91171F;
+}
+.btnRegistrar:hover{
+    background-color: #91171F;
+    color: #f2f2f2;
+}
+.btnRestaurant{
+    background-color: #410B13;
+    color: #ffff;
+}
+.btnRestaurant:hover{
+    background-color: #421820;
+    color: #ffff;
+}
 .form-check-label{
     color: black;
 }

@@ -1,7 +1,8 @@
 
 export interface Menu{
 
-    id?:any;
+    id:any;
+    idRestaurant: any;
     nombre : string;
     descripcion: string;
 }

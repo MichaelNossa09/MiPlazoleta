@@ -16,15 +16,34 @@
     align-items: center;
     text-align: center;
 }
+.btn-aument{
+    border-color: #BA1F33;
+    color: #BA1F33;
+}
+.btn-aument:hover{
+    background-color: #BA1F33;
+    color: #eeeeee;
+}
+.btn-decrement{
+    border-color: #421820;
+    color: #421820;
+}
+.btn-decrement:hover{
+    background-color: #410B13;
+    color: #eeeeee;
+}
 .btnAdd{
     border-radius:2em;
-    color: #000000;
-    background: rgba(15, 131, 207, 0.8);
+    color: #eeeeee;
+    background: #BA1F33;
     padding: .5em 1.5em;
 }
 .btnAdd:hover{
-    background: rgba(15, 131, 207, 1);
+    background: #91171F;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
+}
+.estado, h5{
+    color: #421820;
 }

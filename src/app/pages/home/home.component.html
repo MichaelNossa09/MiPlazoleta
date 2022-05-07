@@ -1,52 +1,55 @@
 
-    <section>
-        <div class="container" *ngIf="login &&  rol != 'restaurante'">
-            <div class="row m-4">
-                <div class="col-md-4" *ngFor="let item of plazoletas">
-                    <div class="card m-2">
-                        <div class="image">
-                            <img src="{{item.image}}" class=" card-img-top" alt="...">
-                        </div>
-                        <div class="card-body">
-                          <h5 class="card-title">{{item.nombre}}</h5>
-                          <p class="card-text">{{item.ubicacion}}</p>
-                          <a (click)="enviarId(item.id)" class="btn">Ver Restaurantes</a>
+        <section>
+            <div class="container mt-5 mb-5" *ngIf="rol === 'restaurante'; else User ">
+                <div class="row m-4">
+                    <div class="col-md-6 mb-2">
+                        <div class="image-restaurant">
+                            <img src="{{restaurant.image}}" alt="">
                         </div>
                     </div>
+                    <div class="col-md-6 mt-2">
+                        <p>Nombre: <br><b>{{restaurant.nombre}}</b></p>
+                        <p>Teléfono: <br><b>{{restaurant.phone}}</b></p>
+                        <p>Correo Electrónico: <br><b>{{restaurant.email}}</b></p>
+                    </div>
+    
+                    <div class="col-md-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="d-grid m-2">
+                            <button class="btn" routerLink="/Menu">Ver Mis Menus</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-grid m-2"> 
+                            <button class="btn" routerLink="/pedidos">Ver Pedidos</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section>
-        <div class="container" *ngIf="login &&  rol === 'restaurante' ">
-            <div class="row m-4">
-                <div class="col-md-6 mb-2">
-                    <div class="image">
-                        <img src="{{restaurant.image}}" alt="">
+    <ng-template #User>
+        <section>
+            <div class="container mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-4 mt-3 mb-3" *ngFor="let item of plazoletas">
+                        <div class="card m-2">
+                            <div class="image">
+                                <img src="{{item.image}}" class=" card-img-top" alt="...">
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">{{item.nombre}}</h5>
+                              <p class="card-text">{{item.ubicacion}}</p>
+                              <a (click)="enviarId(item.id)" class="btn">Ver Restaurantes</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 mt-2">
-                    <p>Nombre: <br><b>{{restaurant.nombre}}</b></p>
-                    <p>Teléfono: <br><b>{{restaurant.phone}}</b></p>
-                    <p>Correo Electrónico: <br><b>{{restaurant.email}}</b></p>
-                </div>
+            </div>
+        </section>
+    </ng-template>
 
-                <div class="col-md-12">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="d-grid m-2">
-                        <button class="btn" routerLink="/Menu">Ver Mis Menus</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-grid m-2"> 
-                        <button class="btn" routerLink="/deleteMenu">Ver Pedidos</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 

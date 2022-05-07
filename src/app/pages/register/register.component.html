@@ -1,20 +1,21 @@
 
-<div class="container">
-	<div class="row mt-4 mb-4">
-		<div class="col-md-6">
+<div class="container mt-5 mb-5">
+	<div class="row ">
+		<div class="col-md-6  mt-3 mb-3">
       <ngb-carousel>
 				<ng-template *ngFor="let imagen of images"  ngbSlide>
 				  <div class="picsum-img-wrapper">
-					<img src="../../../assets/{{imagen.img}}" alt="">
+            <div class="image">
+              <img src="{{imagen.img}}" alt="">
+            </div>
 				  </div>
 				  <div class="carousel-caption">
 					<h3>{{imagen.name}}</h3>
-					<p>{{imagen.des}}</p>
 				  </div>
 				</ng-template>
 			</ngb-carousel>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 mt-3 mb-3">
       <form  (ngSubmit)="f.form.valid && guardarUsuarioCreado()" #f="ngForm"  class="needs-validation">
 			<div class="card text-center ">
 			  <div class="card-header mb-2"> 
@@ -24,33 +25,39 @@
           <div class="col-md-12">
             <label for="Name" class="d-flex my-2 form-label">Nombre</label>
             <input class="form-control" type="text"  name="nombre" placeholder="Ingrese su nombre" [(ngModel)]="datos.nombre" required>
+            <div class="invalid-feedback"></div>
           </div>
         </div> 
         <div class="row mx-2">
           <div class="col-md-12">
             <label for="Email" class="d-flex my-2 form-label" >Email</label>
             <input class="form-control" type="email" name="email" placeholder="Ingrese su email" [(ngModel)]="datos.email" required>
+            <div class="invalid-feedback"></div>
           </div>
         </div> 
         <div class="row mx-2">
           <div class="col-md-6">
             <label for="password" class="d-flex my-2 form-label">Password</label>
             <input class="form-control" type="password" name="password" placeholder="Ingrese minimo 6 caracteres" [(ngModel)]="datos.password" required>
+            <div class="invalid-feedback"></div>
           </div>
           <div class="col-md-6">
             <label for="Phone" class="d-flex my-2 form-label">Telefono</label>
             <input class="form-control" type="number" name="phone" placeholder="Ingrese su telefono" [(ngModel)]="datos.phone" required>
+            <div class="invalid-feedback"></div>
           </div>
         </div>
-        <div class="row mx-2 mb-2">
+        <div class="row mx-1">
           <div class="d-grid mt-3">
-            <button class="btn btn-outline-secondary" type="submit">REGISTRARME</button>
-            <button class="btn btn-outline-danger mt-2" routerLink="/register-restaurant">REGISTRARME COMO RESTAURANTE</button>
+            <button class="btn btnRegistrar mt-2 mb-2" type="submit">REGISTRARME</button>
           </div>
           <p for="register" class="mt-2">Ya tienes cuenta? <a routerLink="/login">Logeate!</a></p>
         </div>
 			</div>
     </form>
+    <div class="d-grid mt-3">
+      <button class="btn btnRestaurant mt-2 mb-2" routerLink="/register-restaurant">REGISTRARME COMO RESTAURANTE</button>
+    </div>
 		</div>  
 	</div>
 </div>

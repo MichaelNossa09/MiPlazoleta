@@ -10,14 +10,14 @@ import { AuthServices } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   images: any[]=[
-    {name:'Plazoleta La 19',
-    img: 'plazoleta1.jpg',
+    {name:'HamburBeer',
+    img: 'https://firebasestorage.googleapis.com/v0/b/miplazoleta-69f98.appspot.com/o/restaurantes%2FK1649179296026?alt=media&token=fafe58e3-da9b-431e-8282-942c02a11277',
     des: 'Plazoleta con 5 años de servicio al publico, muy buena calidad.'},
-    {name: 'Plazoleta Ocean Mall',
-    img:'plazoleta2.jpg',
+    {name: 'Margherita',
+    img:'https://firebasestorage.googleapis.com/v0/b/miplazoleta-69f98.appspot.com/o/restaurantes%2FK1649179186942?alt=media&token=feb327d4-70ef-425d-918c-c5589376a4d9',
     des: 'La mejor para ir en familia'},
-    {name: 'Plazoleta Kikiro',
-    img: 'plazoleta3.jpg',
+    {name: 'BurgerKing',
+    img: 'https://firebasestorage.googleapis.com/v0/b/miplazoleta-69f98.appspot.com/o/restaurantes%2FK1649179344979?alt=media&token=affe2143-ea12-4f9b-ba1f-db5568199475',
     des: 'La mejor'}
   ];
   constructor(private authService : AuthServices,

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
 
   login : boolean = false;
-  rol: "visitante" | "admin" | "restaurante" | undefined;
+  rol: "cliente" | "restaurante";
   constructor(
     private firestore: FirestoreService,
     private authService: AuthServices,
@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
           this.login = true;
           this.getDatosUser(res.uid)
           this.getRol(res.uid)
-          this.getRestaurantUser(res.uid)
           this.getPlazoletas()
           
         }else{
@@ -37,7 +36,6 @@ export class HomeComponent implements OnInit {
      }
   
   ngOnInit(): void {
-    // this.recibirDatosBD();
   }
   getDatosUser(uid: any){
     const path = "Usuarios";
@@ -57,18 +55,17 @@ export class HomeComponent implements OnInit {
     });
   }
   restaurant : any;
-  getRestaurantUser(uid: any){
-    const path = "Plazoletas/"+uid;
-  }
   getRol(uid: any){
     const path = "Plazoletas"
     this.firestore.getCollection<Plazoleta>(path).subscribe( res =>{
       res.map(user => {
         const ruta = "Plazoletas/"+user.id+"/Restaurantes"
         this.firestore.getDoc<Restaurant>(ruta, uid).subscribe(data => {
-          if(user.id == data?.idPlazoleta){
-            this.restaurant = data;
-            this.rol = data?.role;             
+          if(data){
+            if(user.id == data.idPlazoleta){
+              this.restaurant = data;
+              this.rol = data.role;             
+            }
           }
         })
       })
@@ -77,30 +74,4 @@ export class HomeComponent implements OnInit {
   enviarId(id: any){
     this.router.navigate(['/plazoletas', id])
   }
-  
-  // refrescarPlazoletas(): void{
-  //   this.plazoleta = undefined;
-  //   this.plazoletaIndex = -1;
-  //   this.recibirDatosBD();
-  // }
-  // recibirDatosBD(): void{
-  //   this.plazoletaService.getAll().snapshotChanges().pipe(
-  //     map(cambiar => cambiar.map(c => ({
-  //       id: c.payload.key, ...c.payload.val()
-  //     })))
-  //   ).subscribe(data =>{
-  //     this.plazoletas = data;
-  //   })
-  // }
-
-  // eliminarTodo():void{
-  //   this.plazoletaService.deteleAll().then( () => this.refrescarPlazoletas())
-  //   .catch(err => console.log(err))
-  // }
-  // configuracionPlazoleta(plazoletas : Plazoleta, index: number): void{
-  //  this.plazoleta = plazoletas;
-  //  this.plazoletaIndex = index;
-  //  console.log(this.plazoleta, this.plazoletaIndex);
-  //  this.router.navigate(['/plazoletas/', index])
-  // }
 }

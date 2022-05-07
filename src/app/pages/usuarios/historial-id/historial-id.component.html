@@ -1,0 +1,43 @@
+<div class="container mt-5 mb-5" *ngIf="pedido" >
+    <div class="row">
+        <div class="col-md-12 mt-3 mb-3" >
+            <div class="col-md-12 mt-2 mb-2" *ngIf="pedido.restaurante">
+                <h5 class="text-center" *ngIf="pedido.restaurante.idPlazoleta == 'l2xoqKJirmtuNcqMdroHJyu0uEE2bjqKJ07Lep64veLz82iU2gZ3sXrrnpg3R5' ">
+                    Plazoleta Kistachi
+                </h5>
+                <h5 class="text-center" *ngIf="pedido.restaurante.idPlazoleta == '4vYWh6BBntnr19izhfB6UypyBUnAvfwLNU9hVagAvrDQoReV9CylF8QLMWoJNA' ">
+                    Plazoleta La Samaria
+                </h5>
+                <h5 class="text-center" *ngIf="pedido.restaurante.idPlazoleta == 'uf1s7R1wnrzc9jqyG6wBxRb41zXE7G2Hp6UaY1xReaVC4u26cphv4E7zAL5Dn0' ">
+                    Plazoleta Caribean
+                </h5>
+            </div>
+        </div>
+        <hr>
+        <div *ngIf="pedido.restaurante && rol == 'cliente'; else Restaurant">
+            <h5 class="card-text text-center">{{pedido.restaurante.nombre}}</h5>
+         </div>
+         <ng-template #Restaurant >
+            <h5 class="card-text text-center" *ngIf="usuario">{{usuario.nombre}}</h5>
+         </ng-template>
+        <div class="col-md-4 mt-3 mb-3" *ngFor="let item of pedido.productos">
+            <div class="card text-center" >
+                <img src="{{item.platillo.imagen}}" alt="" class="card-img-top"> 
+                <div class="card-body" > 
+                    <h5 class="mb-4">{{item.platillo.nombre}}</h5>
+                     <p class="card-text">{{item.platillo.descripcion}}</p>
+                     <p class="text-center">Cantidad: <b class="mx-1"> {{item.cantidad}}</b></p>
+                     <p class="text-center">Precio: <b>{{item.platillo.precio | currency: 'COP '}}</b></p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="col-md-12 mt-3 mb-3" *ngIf="rol == 'cliente'; else Off">
+            <h6 class="text-center">Total Pagado: <b class="mx-1">{{pedido.precioTotal | currency: 'COP '}}</b></h6>
+        </div>
+        <ng-template #Off>
+            <h6 class="text-center">Total Recibido: <b class="mx-1">{{pedido.precioTotal | currency: 'COP '}}</b></h6>
+        </ng-template>
+    </div>
+</div>
+

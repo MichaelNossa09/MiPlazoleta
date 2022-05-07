@@ -15,11 +15,18 @@ import { PagesnotfoundComponent } from './pages/usuarios/pagesnotfound/pagesnotf
 import { AdminComponent } from './pages/usuarios/admin/admin.component';
 import { AdminGuard } from './components/guards/admin.guard';
 import { MenuComponent } from './pages/restaurants/menu/menu.component';
+import { HistorialPedidosComponent} from './pages/usuarios/historial-pedidos/historial-pedidos.component';
+import { HistorialIdComponent} from './pages/usuarios/historial-id/historial-id.component';
 
 import { VerPlatillosComponent } from './pages/restaurants/ver-platillos/ver-platillos.component';
 import { DetailsMenuComponent } from './pages/usuarios/details-menu/details-menu.component';
 import { DetailsPlatillosComponent } from './pages/usuarios/details-platillos/details-platillos.component';
 import { CarritoComponent } from './pages/usuarios/carrito/carrito.component'
+import { InfoPedidoComponent } from './pages/info-pedido/info-pedido.component';
+import { PedidosComponent } from './pages/restaurants/pedidos/pedidos.component';
+import { PedidoIdComponent } from './pages/restaurants/pedido-id/pedido-id.component';
+import { RestaurantGuard } from './components/guards/restaurant.guard';
+
 
 const routes: Routes = [
   
@@ -33,10 +40,15 @@ const routes: Routes = [
   {path:"plazoletas/:id", component: DetailsPlazoletasComponent, canActivate:[AuthGuard]},
   {path:"plazoletas/:id/:id2", component: DetailsMenuComponent, canActivate:[AuthGuard] },
   {path:"plazoletas/:id/:id2/:id3", component: DetailsPlatillosComponent, canActivate:[AuthGuard] },
-  {path:"admin", component: AdminComponent, canActivate:[AdminGuard]},
-  {path: "Menu", component: MenuComponent, canActivate:[AuthGuard] },
+  {path:"admin", component: AdminComponent, canActivate:[AuthGuard, AdminGuard]},
+  {path: "Menu", component: MenuComponent, canActivate:[AuthGuard, RestaurantGuard] },
   {path: "Menu/:id", component: VerPlatillosComponent, canActivate:[AuthGuard] },
   {path: "carrito", component: CarritoComponent, canActivate:[AuthGuard] },
+  {path: "infoPedido", component: InfoPedidoComponent, canActivate:[AuthGuard] },
+  {path: "historial-pedidos", component: HistorialPedidosComponent, canActivate:[AuthGuard] },
+  {path: "historial/:id", component: HistorialIdComponent, canActivate:[AuthGuard] },
+  {path: "pedidos", component: PedidosComponent, canActivate:[AuthGuard] },
+  {path: "pedidos/:id", component: PedidoIdComponent, canActivate:[AuthGuard] },
   {path:"**", component: PagesnotfoundComponent}
 ];
 

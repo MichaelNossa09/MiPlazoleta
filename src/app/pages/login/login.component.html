@@ -4,11 +4,12 @@
 			<ngb-carousel>
 				<ng-template *ngFor="let imagen of images"  ngbSlide>
 				  <div class="picsum-img-wrapper">
-					<img class="img" src="../../../assets/{{imagen.img}}" alt="">
+					  <div class="image">
+						  <img class="img" src="{{imagen.img}}" alt="">
+					  </div>
 				  </div>
 				  <div class="carousel-caption">
 					<h3>{{imagen.name}}</h3>
-					<p>{{imagen.des}}</p>
 				  </div>
 				</ng-template>
 			</ngb-carousel>	
@@ -29,14 +30,14 @@
 							<input class="form-control" type="password" name="password" placeholder="Password" ngModel required>
 						</div>
 						<div class="col-md-12 d-grid mt-3" >
-							<button type="submit" class="btn btn-outline-secondary mb-3">Ingresar</button>
+							<button type="submit" class="btn btn-ingresar mb-3">Ingresar</button>
 						</div>
 					</form>
-                    <div class="col-md-12 d-grid" >
+                    <!-- <div class="col-md-12 d-grid" >
                         <button type="submit" class="btn btn-outline-danger" (click)="loginWithGoogle()">Ingresar con Google
                             <img src="../../../assets/icons-google.png" width="20" height="20" alt="">
                         </button>
-                    </div>
+                    </div> -->
                     <p class="mt-2">Aún no tienes una cuenta? <a routerLink="/register">Regístrate!</a></p>
 				</div>
 			</div>

@@ -3,25 +3,19 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AuthServices } from '../../services/auth.service';
 import { map } from 'rxjs/operators'
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoggedGuard implements CanActivate {
+export class RestaurantGuard implements CanActivate {
 
-  constructor(private authServe: AuthServices, private router : Router){}
+  constructor(private authServe: AuthServices, private router : Router,
+    private firestore : FirestoreService){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.authServe.userData$.pipe(
-        map( user =>{
-          if(user){
-            this.router.navigate(['/home'])
-            return false;
-          }
-          return true;
-        })
-      );
+    return true
   }
-  
 }

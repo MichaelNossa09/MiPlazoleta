@@ -7,5 +7,5 @@ export interface Usuario{
     email: string;
     password: string;
     phone: string;
-    role: "visitante" | "admin" | "restaurante";
+    role: "cliente";
 }

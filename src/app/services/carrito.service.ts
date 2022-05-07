@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Pedido, ProductoPedido } from '../models/pedido.model';
 import { Platillos } from '../models/platillos.model';
 import { Restaurant } from '../models/restaurant.model';
@@ -12,12 +13,14 @@ import { ToastService } from './toastService.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CarritoService {
-
+export class CarritoService{
+  
+  restaurantSubscriber: Subscription;
   pedido: Pedido;
   uid: any;
   usuario : Usuario;
   restaurant: Restaurant;
+
   constructor(private authService: AuthServices,
     private firestore: FirestoreService,
     private gS: GenerarStringService,
@@ -29,15 +32,12 @@ export class CarritoService {
         }
     }) 
   }
-  loadCarrito(){
-    const path = "Usuarios/"+this.uid+"/Carrito";
-    this.firestore.getDoc<Pedido>(path, this.uid).subscribe( res =>{
-        if(res){
-          this.pedido = res;
-        }else{
-          this.initCarrito();
-        }
-    });
+  loadCarrito(pedido: Pedido){
+    if(pedido){
+      this.pedido = pedido;
+    }else{
+      this.initCarrito();
+    }
   }
   initCarrito(){
     this.pedido = {
@@ -46,30 +46,19 @@ export class CarritoService {
     restaurante: this.restaurant,
     productos: [],
     precioTotal: 0,
-    estado: 'enviado',
+    estado: 'Enviado',
     fecha: new Date(),
     valoracion: null
     }
   }
-  getUser(){ 
-    const path = "Usuarios";
-    this.firestore.getDoc<Usuario>(path, this.uid).subscribe( res => {
-        if(res){
-          this.usuario = res;
-          this.loadCarrito();
-        }
-    })
+  getUser(usuario : Usuario){
+    this.usuario = usuario;
   }
-  getRestaurant(idPlazoleta: any, idRestaurante: any){
-    const path = "Plazoletas/"+idPlazoleta+"/Restaurantes"
-    this.firestore.getDoc<Restaurant>(path, idRestaurante).subscribe( res => {
-      if(res){
-        this.restaurant = res;
-        this.getUser();
-      }
-    })
+  getRestaurant(restaurant : Restaurant){
+    this.restaurant = restaurant;
   }
-  addProducts(platillo : Platillos){
+   addProducts(platillo : Platillos){
+
     const item = this.pedido.productos.find( productoPedido => {
       return (productoPedido.platillo.id === platillo.id)
     });
@@ -94,6 +83,8 @@ export class CarritoService {
         duration: 3000
       })
     })
+    console.log(this.pedido.productos);
+    
   }
   aumentarProduct(platillo: Platillos){
     const item = this.pedido.productos.find( productoPedido => {
@@ -105,9 +96,8 @@ export class CarritoService {
         this.pedido.precioTotal = this.pedido.precioTotal + item.platillo.precio;
     }
     const path = "Usuarios/"+this.uid+"/Carrito"
-    this.firestore.updateDoc(this.pedido, path, this.uid).then( () => {})
+    this.firestore.updateDoc(this.pedido, path, this.uid)
   }
-
   quitarProduct(platillo: Platillos){
     let position = 0;
     const item = this.pedido.productos.find( (productoPedido, index) => {
@@ -128,8 +118,8 @@ export class CarritoService {
           const path = "Usuarios/"+this.uid+"/Carrito"
           this.firestore.deleteDoc<Pedido>(path, this.uid).then(() => {
             console.log("Eliminando Pedido...");
-            this.toast.toastService.warning({
-              detail: "Warning Message",
+            this.toast.toastService.success({
+              detail: "Succes Message",
               summary: "Carrito Eliminado.",
               duration: 3000
             })
@@ -140,9 +130,7 @@ export class CarritoService {
     }
     if(this.pedido.productos.length > 0){
       const path = "Usuarios/"+this.uid+"/Carrito"
-      this.firestore.updateDoc(this.pedido, path, this.uid).then( () => {
-        console.log("Actualizando Doc..");
-      })
+      this.firestore.updateDoc(this.pedido, path, this.uid)
     }    
   }
 }

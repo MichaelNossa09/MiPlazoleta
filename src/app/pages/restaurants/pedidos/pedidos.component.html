@@ -1,0 +1,31 @@
+<div class="container mt-5 mb-5" *ngIf="length > 0">
+    <div class="row m-4">
+        <div class="col-md-4 mt-5 mb-5" *ngFor="let item of pedidos">
+            <div class="card text-center m-2">
+                <p class="card-title">Cliente: {{item.usuario.nombre}}</p>
+                <p class="card-text">Cantidad de Productos: <b class="mx-2"> {{item.productos.length}}</b></p>
+                
+                <!-- <div *ngFor="let item2 of item.productos">
+                    <img src="{{item2.platillo.imagen}}" alt="" class="card-img-top"> 
+                    <div class="card-body" > 
+                        <h5><b>{{item2.platillo.nombre}}</b></h5>
+                        <p class="card-text text-center">Cantidad: <b class="mx-1"> {{item2.cantidad}}</b></p>
+                    </div>
+                </div> -->
+                <div class="d-grid m-2">
+                    <button class="btn btnAdd m-1" (click)="aceptarPedido(item)">Ver Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container cont" *ngIf="length == 0">
+    <div class="row m-5">
+        <div class="col-md-12">
+          <h5 class="text-center">
+            NO HAY PEDIDOS ACTUALMENTE.
+          </h5>
+        </div>
+      </div>
+</div>

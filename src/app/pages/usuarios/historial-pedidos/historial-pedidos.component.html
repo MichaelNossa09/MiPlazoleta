@@ -1,0 +1,66 @@
+<div class="container mt-5 mb-5" *ngIf="length>0 && rol=='cliente'">
+    <div class="row">
+        <div class="col-md-4 mt-3 mb-3" *ngFor="let item of pedidos">
+            <div class="card" *ngIf="item.restaurante">
+                <img src="{{item.restaurante.image}}" alt="" class="card-img-top"> 
+                <div class="card-body"> 
+                    <h5 class="mb-3"><b>{{item.restaurante.nombre}}</b></h5>
+                    <h6 class="card-text">Productos: {{item.productos.length}}</h6>
+                    <!-- <div *ngFor="let item2 of item.productos">
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <p>Nombre: <b class="card-text">{{item2.platillo.nombre}}</b></p>
+                            </div>
+                            <div class="col-md-6 ">
+                                <p>Cantidad: <b class="mx-1 card-text"> {{item2.cantidad}}</b></p>
+                            </div>
+                        </div>
+                    </div> -->
+                    <p>Total Pagado: <b class="card-text">{{item.precioTotal | currency: 'COP '}}</b></p>
+                    <div class="d-grid">
+                        <button class="btn btnAdd" (click)="verPedido(item)">
+                            Ver Pedido
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+
+<div class="container mt-5 mb-5" *ngIf="length>0 && rol=='restaurante'">
+    <div class="row">
+        <div class="col-md-4 mt-3 mb-3" *ngFor="let item of pedidos">
+            <div class="card" *ngIf="item.restaurante">
+                <img src="{{item.restaurante.image}}" alt="" class="card-img-top"> 
+                <div class="card-body"> 
+                    <h5 class="mb-3"><b>{{item.usuario.nombre}}</b></h5>
+                    <h6 class="card-text">Productos: {{item.productos.length}}</h6>
+                    <!-- <div *ngFor="let item2 of item.productos">
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <p>Nombre: <b class="card-text">{{item2.platillo.nombre}}</b></p>
+                            </div>
+                            <div class="col-md-6 ">
+                                <p>Cantidad: <b class="mx-1 card-text"> {{item2.cantidad}}</b></p>
+                            </div>
+                        </div>
+                    </div> -->
+                    <p>Total Recibido: <b class="card-text">{{item.precioTotal | currency: 'COP '}}</b></p>
+                    <div class="d-grid">
+                        <button class="btn btnAdd" (click)="verPedido(item)">
+                            Ver Pedido
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+
+
+    <div class="container mt-5 mb-5 cdor" *ngIf="length == 0">
+        <div class="row">
+            <h5>NO HA REALIZADO NINGÚN PEDIDO</h5>
+        </div>
+    </div>

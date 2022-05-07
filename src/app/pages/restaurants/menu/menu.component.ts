@@ -26,9 +26,12 @@ export class MenuComponent implements OnInit {
   rutaR: string;
   menuClick : Boolean = false;
   editClick : Boolean = false;
+  length = 0;
   datos: Menu = {
+    id: '',
     nombre : '',
-    descripcion: ''
+    descripcion: '',
+    idRestaurant: ''
   }
   constructor(
     private firestore: FirestoreService,
@@ -63,9 +66,11 @@ export class MenuComponent implements OnInit {
         const ruta = "Plazoletas/"+user.id+"/Restaurantes"
         this.firestore.getDoc<Restaurant>(ruta, uid).subscribe(data => {
           if(user.id == data?.idPlazoleta){
-            this.rutaR = ruta+"/"+uid+"/Menus"    
+            this.rutaR = ruta+"/"+uid+"/Menus";
+            this.datos.idRestaurant = data?.id;    
             this.firestore.getCollection<Menu>(this.rutaR).subscribe(sol => {
               this.menu = sol;
+              this.length = sol.length;
             }) 
           }
         })
@@ -76,8 +81,10 @@ export class MenuComponent implements OnInit {
   mostrarAdd(){
     this.menuClick = true;
     this.datos = {
+      id: this.datos.id,
       nombre : '',
-      descripcion: ''
+      descripcion: '',
+      idRestaurant: this.datos.idRestaurant
     }
   }
   cerrarMenu(){

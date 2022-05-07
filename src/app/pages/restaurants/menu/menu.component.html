@@ -1,8 +1,8 @@
 
 <!-- Principal -->
-<div class="container" *ngIf="menuClick == false && editClick == false">
-    <div class="row m-2">
-        <div class="col-md-4 mb-2" *ngFor="let item of menu">
+<div class="container mt-5 mb-5" *ngIf="menuClick == false && editClick == false && length>0">
+    <div class="row">
+        <div class="col-md-4 mt-3 mb-3" *ngFor="let item of menu">
             <div class="card m-1">
                 <div class="card-body">
                   <h5 class="card-title">{{item.nombre}}</h5>
@@ -15,7 +15,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 mt-3 mb-3">
+            <div class="d-grid mt-3 mb-2">
+                <button class="btn btnAdd" (click)="mostrarAdd()">Agregar Nuevo Menú</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5 mb-5 cdor" *ngIf="menuClick == false && editClick == false && length == 0">
+    <div class="row">
+        <div class="col-md-12 mt-3 mb-3">
+            <h5 class="text-center">NO HAY MENUS CREADOS ACTUALMENTE</h5>
+        </div>
+        <div class="col-md-12 mt-3 mb-3">
             <div class="d-grid mt-3 mb-2">
                 <button class="btn btnAdd" (click)="mostrarAdd()">Agregar Nuevo Menú</button>
             </div>
@@ -24,9 +38,9 @@
 </div>
 
 <!-- Agregar Menú -->
-<div class="container" *ngIf="menuClick">
-    <div class="row m-5">
-        <div class="col-md-12">
+<div class="container mt-5 mb-5" *ngIf="menuClick">
+    <div class="row">
+        <div class="col-md-12 mt-3 mb-3">
             <form  (ngSubmit)="f.form.valid && agregarMenu()" #f="ngForm">
                 <div>
                     <div class="form-group text-center">
@@ -55,9 +69,9 @@
 
 
 <!-- Editar Menú -->
-<div class="container" *ngIf="editClick">
-    <div class="row m-5" >
-        <div class="col-md-12">
+<div class="container mt-5 mb-5" *ngIf="editClick">
+    <div class="row" >
+        <div class="col-md-12 mt-3 mb-3">
             <form  (ngSubmit)="f.form.valid && editarMenu()" #f="ngForm">
                 <div>
                     <div class="form-group">

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Restaurant } from 'src/app/models/restaurant.model';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { CarritoService } from 'src/app/services/carrito.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,27 +15,31 @@ export class DetailsPlazoletasComponent implements OnInit {
   faEye = faEye;
   id: any;
   restaurants: Restaurant[];
+  plazoletasSubscriber : Subscription;
   constructor(
     private router: Router,
     private rout: ActivatedRoute,
-    private firestore: FirestoreService,
-    private carrito : CarritoService) {
+    private firestore: FirestoreService) {
       this.id = this.rout.snapshot.paramMap.get('id')
       this.getRestaurant();
     }
     ngOnInit(): void {
 
     }
+    ngOnDestroy(): void {
+      if(this.plazoletasSubscriber){
+        this.plazoletasSubscriber.unsubscribe();
+      }
+    }
 
     getRestaurant(){
       const path = "Plazoletas/"+this.id+"/Restaurantes"     
-      this.firestore.getCollection<Restaurant>(path).subscribe( res => {
+      this.plazoletasSubscriber = this.firestore.getCollection<Restaurant>(path).subscribe( res => {
         this.restaurants = res;
       })
     }
     enviarId(id2: any){
       const id = this.id;
-      this.carrito.getRestaurant(id, id2);
       this.router.navigate(['/plazoletas', id,id2])
     }
   }

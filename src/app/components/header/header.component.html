@@ -1,6 +1,6 @@
 
- <!-- ROL ADMIN -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login && rol == 'admin'">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-header" *ngIf="login; else Logout">
   <div class="container-fluid">
     <a class="navbar-brand mx-2 logo" href="home">MIPLAZOLETA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,6 +15,12 @@
           <a class="nav-link items" routerLink="Contact">Contáctenos</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link items" routerLink="historial-pedidos">Historial de Pedidos</a>
+        </li>
+        <li class="nav-item" *ngIf="rol == 'cliente' ">
+          <a class="nav-link items" routerLink="carrito">Ver Carrito</a>
+        </li>
+        <li class="nav-item" *ngIf="admin != false">
           <a class="nav-link items" routerLink="admin">Agregar Plazoleta</a>
         </li>
         <li class="nav-item active">
@@ -25,7 +31,7 @@
   </div>
 </nav>
 <!-- ROL VISITANTE -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login && rol != 'admin' && rol != 'restaurante'">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login && rol != 'admin' && rol != 'restaurante'">
   <div class="container-fluid ">
     <a class="navbar-brand mx-2 logo" href="home">MIPLAZOLETA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +45,7 @@
         <li class="nav-item">
           <a class="nav-link items" routerLink="contact">Contáctenos</a>
         </li>
+      
         <li class="nav-item">
           <a class="nav-link items" routerLink="carrito">Ver Carrito</a>
         </li>
@@ -48,9 +55,9 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
 <!-- ROL RESTAURANT -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login && rol == 'restaurante'">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login && rol == 'restaurante'">
   <div class="container-fluid">
     <a class="navbar-brand mx-2 logo" href="home">MIPLAZOLETA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,24 +77,26 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
 
 <!-- NO LOGEADO -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="login == false">
-  <div class="container-fluid">
-    <a class="navbar-brand mx-2 logo" href="login">MIPLAZOLETA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse text-center" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link items" routerLink="About">Quiénes Somos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link items" routerLink="Contact">Contáctenos</a>
-        </li>
-      </ul>
+<ng-template #Logout>
+  <nav class="navbar navbar-expand-lg navbar-light bg-header">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-2 logo" href="login">MIPLAZOLETA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link items" routerLink="About">Quiénes Somos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link items" routerLink="Contact">Contáctenos</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</ng-template>

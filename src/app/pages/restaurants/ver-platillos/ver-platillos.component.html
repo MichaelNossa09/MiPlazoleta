@@ -62,16 +62,16 @@
 </div>
 
     <!-- Con Platillos -->
-<div class="container" *ngIf="platilloVacio == false">
+<div class="container mt-5 mb-5" *ngIf="platilloVacio == false">
     <!-- Principal -->
     <div class="row m-2" *ngIf="mostrar == false && btnEdit == false">
-      <div class="col-md-4" *ngFor="let item of platillos">
+      <div class="col-md-4 mb-3" *ngFor="let item of platillos">
           <div class="card m-2">
             <img src="{{item.imagen}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5><b>{{item.nombre}}</b></h5>
               <p class="card-text text-center">{{item.descripcion}}</p>
-              <p class="card-text text-center">{{item.precio | currency: 'COP '}}</p>
+              <p class="text-center">{{item.precio | currency: 'COP '}}</p>
               <div class="d-grid">
                 <button class="btn btnEdit  m-1" (click)="abrirEdit(item)">Editar <fa-icon class="mr-5" [icon]="faEdit"></fa-icon></button>
                 <button class="btn btnElim  m-1" (click)="elim(item.id)">Eliminar <fa-icon class="mr-5"[icon]="faTrash"></fa-icon></button>
@@ -79,13 +79,13 @@
             </div>
         </div>
       </div>
-      <div class="col-md-12 text-center mb-2 mt-3">
+      <div class="col-md-12 text-center mb-2 mt-5">
         <button class="btn btnAdd" (click)="mostrarAdd()">Agregar Nuevo Platillo</button>
       </div>
    </div>
    <!-- Editar Platillo -->
    <div class="row m-2" *ngIf="mostrar == false && btnEdit">
-        <div class="col-md-12">
+        <div class="col-md-12 mb-3">
           <form (ngSubmit)="g.form.valid && editPlatillo()" #g="ngForm">
             <div>
               <div class="form-group">
@@ -125,10 +125,10 @@
                 <label for="imagen">Imagen: </label>
                 <input (change)="cargarImagen($event)"
                   type="file"
-                  name="imagen"
+                  name="datos.imagen"
                   class="form-control"
                   placeholder="{{datos.imagen}}"
-                  [(ngModel)]="datos.imagen"
+                  ngModel
                   required
                 />
               </div>
@@ -143,7 +143,7 @@
 
    <!-- Agregar Platillo -->
    <div class="row m-4" *ngIf="mostrar">
-     <div class="col-md-12" >
+     <div class="col-md-12 mb-3" >
        <form (ngSubmit)="f.form.valid && agregarPlatillo()" #f="ngForm">
          <div>
            <div class="form-group">
@@ -186,9 +186,9 @@
                required
              />
            </div>
-           <div class="d-grid">
-               <button class="btn btn-success mt-2 mb-2" type="submit">Agregar Platillo</button>
-               <button class="btn btn-outline-info mt-2 mb-2" (click)="cerrarAdd()">Volver</button>
+           <div class="d-grid mt-5">
+               <button class="btn btnAdd mt-2 mb-2" type="submit">Agregar Platillo</button>
+               <button class="btn btnCerrar mt-2 mb-2" (click)="cerrarAdd()">Volver</button>
            </div>
          </div>
        </form>

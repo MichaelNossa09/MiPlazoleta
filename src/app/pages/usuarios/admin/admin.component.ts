@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicePlazoletaService } from 'src/app/services/service-plazoleta.service';
 import { Router } from '@angular/router';
 import { Plazoleta } from 'src/app/models/plazoleta.model';
 import { StorageService } from 'src/app/services/storage.service';
@@ -23,13 +22,11 @@ export class AdminComponent implements OnInit {
     ubicacion: '',
     image: ''
   }
-  getUserLogged = this.authService.getUserLogged();
   constructor(private router : Router, 
     private storage : StorageService,
-    private authService : AuthServices,
     private firestore: FirestoreService,
     private toast: ToastService,
-    private gString: GenerarStringService) { }
+    private gString: GenerarStringService) {}
     
   ngOnInit(): void {}
 

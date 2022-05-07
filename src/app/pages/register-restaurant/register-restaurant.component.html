@@ -1,21 +1,22 @@
-<div class="container">
-	<div class="row mt-4 mb-4">
-		<div class="col-md-6">
+<div class="container mt-5 mb-5">
+	<div class="row">
+		<div class="col-md-6 mt-3 mb-3">
       <ngb-carousel>
 				<ng-template *ngFor="let imagen of images"  ngbSlide>
 				  <div class="picsum-img-wrapper">
-					<img src="../../../assets/{{imagen.img}}" alt="">
+            <div class="image">
+              <img src="{{imagen.img}}" alt="">
+            </div>
 				  </div>
 				  <div class="carousel-caption">
 					<h3>{{imagen.name}}</h3>
-					<p>{{imagen.des}}</p>
 				  </div>
 				</ng-template>
 			</ngb-carousel>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 mt-3 mb-3">
       <form class="needs-validation" (ngSubmit)="f.form.valid && guardarRestauranteCreado()" #f="ngForm">
-			<div class="card ">
+			<div class="card">
 			  <div class="card-header text-center mb-2"> 
 					<b>REGISTRO DE RESTAURANTE </b>
 				</div>
@@ -45,7 +46,7 @@
             <div class="invalid-feedback "></div>
           </div>
         </div>
-        <div class="row mx-2 mb-3">
+        <div class="row mx-2">
           <div class="col-md-12">
             <label for="Descripcion" class="d-flex my-2 form-label">Descripción</label>
             <textarea class="form-control" type="text" name="descripcion" placeholder="Ingrese una breve descripcion"
@@ -53,15 +54,15 @@
             <div class="invalid-feedback "></div>
           </div>
         </div>
-        <div class="row mx-2 mb-3">
-          <div class="col-md-12">
+        <div class="row mx-2 mb-2">
+          <div class="col-md-12 form-group">
             <label for="image" class="d-flex my-2 form-label">Imagen</label>
-            <input class="form-control" type="file" name="image" placeholder="Ingrese una breve descripcion"
-            [(ngModel)]="datos.image" (change)="cargarImagen($event)" required>
-            <div class="invalid-feedback "></div>
+            <input (change)="cargarImagen($event)" class="form-control" type="file" accept=".jpg, .jpeg, .png"  name="datos.image"
+              ngModel required>
+            <div class="invalid-feedback"></div>
           </div>
         </div>
-        <div class="row mx-2 mb-2">
+        <div class="row mx-2">
           <div class="col-md-6">
             <label for="validationServer04" class="form-label">Plazoletas</label>
             <select class="form-select" id="validationServer04" name="idPlazoleta" aria-describedby="validationServer04Feedback" 
@@ -76,7 +77,7 @@
         </div>
         <div class="row mx-2 mb-2">
           <div class="d-grid mt-3">
-            <button class="btn btn-outline-secondary " type="submit">REGISTRARME COMO RESTAURANTE</button>
+            <button class="btn btnRestaurant" type="submit">REGISTRARME COMO RESTAURANTE</button>
           </div>
           <p for="register" class="mt-2 text-center">Ya tienes cuenta? <a routerLink="/login">Logeate!</a></p>
         </div>

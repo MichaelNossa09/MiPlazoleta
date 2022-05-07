@@ -1,3 +1,4 @@
+
 .card{
     padding: 1.5em .5em .5em;
     border-radius: 2em;
@@ -8,7 +9,7 @@
 .card-title{
     font-weight: 700;
     font-size: 1.5em;
-    color: rgba(240, 189, 78, 1);
+    color: #410B13;
 }
 .card-text{
     display: flex;
@@ -16,15 +17,16 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    color: #CD5D67;
 }
 .btnAdd{
     border-radius:2em;
-    color: #000000;
-    background: rgba(240, 189, 78, 0.8);
+    color: #eeeeee;
+    background: #BA1F33;
     padding: .5em 1.5em;
 }
 .btnAdd:hover{
-    background: rgba(240, 189, 78, 1);
+    background: #91171F;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;

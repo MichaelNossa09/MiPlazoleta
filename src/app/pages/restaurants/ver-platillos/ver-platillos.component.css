@@ -20,6 +20,10 @@ img{
 .card-title{
     font-weight: 700;
     font-size: 1.5em;
+    
+}
+h5{
+    color: #410B13;
 }
 .card-text{
     display: flex;
@@ -27,48 +31,63 @@ img{
     text-align: center;
     justify-content: center;
     align-items: center;
+    color: #CD5D67;
 }
 .btnEdit{
     border-radius:2em;
     color: #000000;
-    background: rgb(65, 203, 118, 0.6);
+    background: #ffff;
+    border-color: #BA1F33;
     padding: .5em 1.5em;
 }
 .btnEdit:hover {
-    background: rgb(65, 203, 118, 1);
+    background: #BA1F33;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
+    color: #ffff;
 }
 .btnElim{
     border-radius:2em;
-    color: #000000;
-    background: rgba(240, 14, 14, 0.7);
+    color: #ffff;
+    background: #421820;
     padding: .5em 1.5em;
 }
 .btnElim:hover {
-    background: rgba(240, 14, 14, 1);
+    background: #421820;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
 }
 .btnAdd{
     border-radius:2em;
-    color: #000000;
-    background: rgba(240, 189, 78, 0.8);
+    color: #ffff;
+    background: #BA1F33;
     padding: .5em 1.5em;
     /* margin-top: 20rem; */
 }
 .btnAdd:hover{
-    background: rgba(240, 189, 78, 1);
+    background: #BA1F33;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+}
+.btnCerrar{
+    border-radius: 2em;
+    color: #ffff;
+    background: #421820;
+    padding: .5em 1.5em;
+}
+.btnCerrar:hover{
+    background: #421820;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
 }
 .btnAddV{
     border-radius:2em;
-    color: #000000;
-    background: rgba(240, 189, 78, 0.8);
+    color: #ffff;
+    background: #BA1F33;
     padding: .5em 1.5em;
 }
 .btnAddV:hover{
@@ -83,5 +102,5 @@ img{
     justify-content: center;
     align-items: center;
     height: 50vh;
-    color: rgba(240, 189, 78, 1);
+    color: #410B13;
 }

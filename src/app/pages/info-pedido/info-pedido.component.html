@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row m-3">
+        <div class="text-center">
+            <p>Estado: <b class="mx-2">{{pedido.estado}}</b> </p>
+        </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="col-12" *ngFor="let item of productos; let i = index">
+              <th class="col-1">{{i+1}}</th>
+              <td ><div class="image">
+                  <img src="{{item.platillo.imagen}}" alt="">
+              </div> </td>
+              <td>{{item.platillo.nombre}}</td>
+              <td>{{item.total| currency: 'COP '}}</td>
+              <td>{{item.cantidad}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="row m-4">
+        <div class="col-md-12">
+            <p class="text-center">Cantidad Pagada: <b>{{pedido.precioTotal | currency: 'COP '}}</b></p>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 d-grid m-2">
+        <button class="btn btnAdd" (click)="confirm()">Confirmar Pedido</button>
+      </div>
+    </div>
+  </div>

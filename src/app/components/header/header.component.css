@@ -4,35 +4,38 @@
     font-family: 'Poppins', sans-serif;
 }
 .navbar-light .navbar-nav:hover{
-    color: rgba(240, 189, 78, 1);
+    color: #BA1F33;
     transition: all 0.3s ease;
 }
+.bg-header{
+    background: #eeeeee;
+}
 .navbar-nav .items{
-    color: #f2f2f2;
+    color: #91171F;
 }
 .navbar-nav .items:hover{
-    color: rgba(240, 189, 78, 1);
+    color: #BA1F33;
     transition: all 0.3s ease;
 }
 .logo{
-    color: #f2f2f2;
+    color: #91171F;
 }
 .logo:hover{
-    color: rgba(240, 189, 78, 1);
+    color: #BA1F33;
     transition: all 0.3s ease;
 }
 .active{
-    background: rgba(240, 189, 78, 0.8);
+    background: #BA1F33;
     border-radius: 5px;
     
 }
 .active .cs{
-    color: #000000;
+    color: #eeeeee;
 }
 .active{
     text-decoration: none;
 }
 .active:hover{
-    background:rgba(240, 189, 78, 1);
+    background:#91171F;
     transition: all .3s ease;
 }

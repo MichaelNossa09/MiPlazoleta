@@ -3,8 +3,10 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
 import firebase from 'firebase/compat/app';
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { Restaurant } from "../models/restaurant.model";
 import { Usuario } from "../models/usuario.model";
+import { FirestoreService } from "./firestore.service";
 import { ToastService } from "./toastService.service";
 
 
@@ -12,9 +14,11 @@ import { ToastService } from "./toastService.service";
 @Injectable()
 export class AuthServices{
     public userData$: Observable<any>;
+    public id: any;
     constructor(private afauth: AngularFireAuth,
                 private router : Router,
-                private toastService: ToastService){
+                private toastService: ToastService,
+                private firestore: FirestoreService){
                     this.userData$ = this.afauth.authState;
                 }
 

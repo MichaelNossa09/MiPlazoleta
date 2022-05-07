@@ -4,7 +4,7 @@
 }
 img{
     width: 85%;
-    border-radius: 15%;
+    border-radius: 12%;
     height: 10rem;
     margin: 0 auto;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
@@ -21,6 +21,7 @@ img{
     font-size: 1.5em;
     height: 40px;
     width: 100%;
+    color: #410B13;
 }
 .card-text{
     display: flex;
@@ -30,21 +31,22 @@ img{
     align-items: center;
     height: 100px;
     width: 100%;
+    color: #CD5D67;
 }
 .btnAdd{
     border-radius:2em;
-    color: #000000;
-    background: rgba(15, 131, 207, 0.8);
+    color: #eeeeee;
+    background: #BA1F33;
     padding: .5em 1.5em;
     /* margin-top: 20rem; */
 }
 .btnAdd:hover{
-    background: rgba(15, 131, 207, 1);
+    background: #91171F;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
 }
-.btnAddV{
+/* .btnAddV{
     border-radius:2em;
     color: #000000;
     background: rgba(240, 189, 78, 0.8);
@@ -55,4 +57,4 @@ img{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
-}
+} */

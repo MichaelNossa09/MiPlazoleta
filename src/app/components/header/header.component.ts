@@ -13,16 +13,20 @@ export class HeaderComponent implements OnInit {
   plazoletas : Plazoleta[];
   dataRestaurant: any;
 
-  login : boolean = false;
-  rol: "visitante" | "admin" | "restaurante" | undefined;
+  login = false;
+  admin = false;
+  usuario = false;
+  rol: "cliente" | "restaurante";
   constructor(private authService: AuthServices,
   private firestore: FirestoreService) {
       this.authService.getUserLogged().subscribe( res =>{
         if(res){
           this.login = true;
+          if(res.uid == "fwxnlf82IENbqdJiCbF0yBlW2eN2"){
+            this.admin = true;
+          }
           this.getRol(res.uid);
           this.getDatosUser(res.uid)
-          // this.getRestaurantUser(res.uid)
         }else{
           this.login = false;
         }
@@ -48,8 +52,10 @@ export class HeaderComponent implements OnInit {
       res.map(user => {
         const ruta = "Plazoletas/"+user.id+"/Restaurantes"
         this.firestore.getDoc<Restaurant>(ruta, uid).subscribe(data => {
-          if(user.id == data?.idPlazoleta){
-            this.rol = data?.role;       
+          if(data){
+            if(user.id == data.idPlazoleta){
+              this.rol = data.role;       
+            }
           }
         })
       })

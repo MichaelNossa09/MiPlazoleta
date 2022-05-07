@@ -1,0 +1,40 @@
+<div class="container mt-5 mb-5" *ngIf="pedido as ped">
+    <div class="row text-center mt-3 mb-3">
+        <div class="col-md-4 mb-2">
+            <button class="btn btnP" (click)="cambiarEstado(preparando)">Seleccionar Estado Preparando</button>
+        </div>
+        <div class="col-md-4 mb-2">
+            <button class="btn btnT" (click)="cambiarEstado(terminado)">Seleccionar Estado Terminado</button>
+        </div>
+        <div class="col-md-4 mb-2">
+            <button class="btn btnE" (click)="cambiarEstado(entregado)">Seleccionar Estado Entregado</button>
+        </div>
+    </div>
+    <div class="row text-center mt-3">
+        <div class="col-md-12">
+            <p>Estado actual: <b class="estado">{{ped.estado}}</b></p>
+        </div>
+    </div>
+    <div class="row mb-3 mt-1 text-center">
+            <div class="col-md-4 mt-3 mb-3" *ngFor="let item2 of ped.productos">
+                <div class="card text-center" >
+                    <img src="{{item2.platillo.imagen}}" alt="" class="card-img-top"> 
+                    <div class="card-body" > 
+                        <h5><b>{{item2.platillo.nombre}}</b></h5>
+                        <p class="card-text text-center">Cantidad: <b class="mx-1"> {{item2.cantidad}}</b></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<!-- <div class="container" *ngIf="pedido as ped">
+    <div class="row">
+        <div *ngFor="let a of productos">
+            {{a.platillo.nombre}}
+        </div>
+        <div>
+            {{ped.usuario.nombre}}
+        </div>
+    </div>
+</div> -->

@@ -9,6 +9,7 @@ export interface Restaurant{
     password: string;
     phone: string;
     descripcion: string;
-    image: any;
-    role: "restaurante"
+    image?: any;
+    role: "restaurante";
+    clientid: string;
 }

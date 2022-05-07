@@ -21,7 +21,7 @@ export class VerPlatillosComponent implements OnInit {
   faTrash = faTrash;
   faEdit = faEdit;
   archivo: any[];
-  id: any;
+  idMenu: any;
   rutaR: any;
   nameMenu: any;
   platilloID: Platillos;
@@ -44,7 +44,7 @@ export class VerPlatillosComponent implements OnInit {
       private router: Router,
       private storage: StorageService,
       private gString: GenerarStringService){
-      this.id = this._router.snapshot.paramMap.get('id')
+      this.idMenu = this._router.snapshot.paramMap.get('id')
       this.authService.getUserLogged().subscribe( res =>{
         this.getPlatillos(res?.uid)
         this.getRestaurant(res?.uid)
@@ -63,6 +63,7 @@ export class VerPlatillosComponent implements OnInit {
       this.storage.subirImagen("K"+Date.now(), reader.result, "platillos/").then(async url => {
         this.datos.imagen = url;
         const ruta = this.rutaR;
+        this.datos.idMenu = this.idMenu;
         this.datos.id = this.gString.generaString();
         await this.firestore.createDoc(this.datos, ruta , this.datos.id);
         this.toast.toastService.success({
@@ -78,7 +79,7 @@ export class VerPlatillosComponent implements OnInit {
     this.mostrar = true;
     this.datos = {
       id: '',
-      idMenu: '',
+      idMenu: this.idMenu,
       nombre: '',
       precio: 0,
       descripcion: '',
@@ -115,7 +116,7 @@ export class VerPlatillosComponent implements OnInit {
         const ruta = "Plazoletas/"+user.id+"/Restaurantes"
         this.firestore.getDoc<Restaurant>(ruta, uid).subscribe(data => {
           if(user.id == data?.idPlazoleta){
-            this.rutaR = ruta+"/"+uid+"/Menus/"+this.id+"/Platillos"    
+            this.rutaR = ruta+"/"+uid+"/Menus/"+this.idMenu+"/Platillos"    
             this.firestore.getCollection<Platillos>(this.rutaR).subscribe(sol => {
               this.platillos = sol;
               if(this.platillos.length > 0){
@@ -143,6 +144,7 @@ export class VerPlatillosComponent implements OnInit {
       this.storage.subirImagen("K"+Date.now(), reader.result, "platillos/").then(async url => {
         this.datos.imagen = url;
         const ruta = this.rutaR;
+        this.datos.idMenu = this.idMenu;
         await this.firestore.updateDoc(this.datos, ruta , this.datos.id);
         this.toast.toastService.success({
           detail: "Succes Message",

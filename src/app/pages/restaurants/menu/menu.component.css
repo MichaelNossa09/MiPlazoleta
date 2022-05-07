@@ -1,15 +1,4 @@
-/* .btn{
-    border-radius:2em;
-    color: #000000;
-        
-    padding: .5em 1.5em; 
-}
-.btn:hover {
-    background: rgba(240, 189, 78, 1);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-    transition: all 0.3s ease;
-} */
+
 .card{
     padding: 1.5em .5em .5em;
     border-radius: 2em;
@@ -20,7 +9,7 @@
 .card-title{
     font-weight: 700;
     font-size: 1.5em;
-    color: rgba(240, 189, 78, 1);
+    color: #410B13;
 }
 .card-text{
     display: flex;
@@ -28,42 +17,55 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    color: #CD5D67;
 }
 .btnEdit{
-    border-color: rgb(65, 203, 118, 1);
+    border-color: #CD5D67;
     border-radius: 2em;
     color: #000000;
-    background: #f2f2f2;
+    background: white;
     padding: .5em 1.5em;
 }
 .btnEdit:hover {
-    background: rgb(65, 203, 118, 1);
+    background: #CD5D67;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
 }
 .btnElim{
-    border-color: rgb(245, 32, 32);
+    border-color: #BA1F33;
     border-radius:2em;
     color: #000000;
-    background: #f2f2f2;
+    background: white;
     padding: .5em 1.5em;
 }
 .btnElim:hover {
-    background: rgb(245, 32, 32);
+    background: #BA1F33;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
 }
 .btnAdd{
     border-radius:2em;
-    color: #000000;
-    background: rgba(240, 189, 78, 0.8);
+    color: #eeeeee;
+    background: #BA1F33;
     padding: .5em 1.5em;
 }
 .btnAdd:hover{
-    background: rgba(240, 189, 78, 1);
+    background: #91171F;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     transition: all 0.3s ease;
+}
+h5{
+    color: #410B13;
+}
+
+.cdor{
+    height: 50vh;
+    display: flex;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }

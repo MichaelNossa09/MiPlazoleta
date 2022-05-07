@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { UsuariosService } from './services/usuariosService.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
